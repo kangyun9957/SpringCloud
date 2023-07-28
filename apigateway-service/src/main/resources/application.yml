@@ -32,6 +32,15 @@ spring:
           filters:
             - Custom
 
-token:
-  secret: user_token
+#token:
+#  secret: user_token
 
+logging:
+  level:
+    com.example.apigatewayservice: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httpexchanges

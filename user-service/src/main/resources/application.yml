@@ -30,10 +30,16 @@ eureka:
 greeting:
   message: Welocme to the Simple E-commerce.
 
-token:
-  expiration_time: 86400000
-  secret: user token
+#token:
+#  expiration_time: 86400000
+#  secret: user token
 
 logging:
   level:
     com.example.userservice: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
