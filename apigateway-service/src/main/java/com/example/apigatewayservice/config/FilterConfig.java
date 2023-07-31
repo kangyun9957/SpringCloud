@@ -77,7 +77,7 @@ public class FilterConfig {
                                 .removeRequestHeader("Cookie")
                                 .rewritePath("/user-service/(?<segment>.*)","/$\\{segment}"))
                         .uri("lb://USER-SERVICE"))
-                .route(r -> r.method(HttpMethod.GET).and().method(HttpMethod.GET).and().path("/user-service/actuator/**")
+                .route(r -> r.method(HttpMethod.GET).or().method(HttpMethod.POST).and().path("/user-service/actuator/**")
                         .filters(f -> f.filters(customGatewayFilterFactory.apply(CustomGatewayFilterFactory.Config.builder()
                                         .foo("A")
                                         .build()))

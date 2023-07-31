@@ -4,11 +4,16 @@ server:
 spring:
   application:
     name: user-service
-  datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/test
-    username: root
-    password: Qax273645!
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+#  datasource:
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://localhost:3306/test
+#    username: root
+#    password: Qax273645!
   jpa:
     hibernate:
       ddl-auto: create
@@ -42,4 +47,6 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans
+        include: refresh, health, beans, busrefresh
+
+
