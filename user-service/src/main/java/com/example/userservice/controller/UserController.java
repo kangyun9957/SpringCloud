@@ -6,6 +6,7 @@ import com.example.userservice.service.UserService;
 import com.example.userservice.vo.Greeting;
 import com.example.userservice.vo.RequestUser;
 import com.example.userservice.vo.ResponseUser;
+import io.micrometer.core.annotation.Timed;
 import jakarta.ws.rs.GET;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/health_check")
+    @Timed(value="users.status", longTask=true)
     public String status(){
         return "It's Working in User Service on PORT "
                 +"\n port(local.server.port) ="+env.getProperty("local.server.port")

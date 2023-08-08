@@ -134,6 +134,18 @@ public class FilterConfig {
                                         .postLogger(true)
                                         .build())))
                         .uri("lb://ORDER-SERVICE"))
+                .route(r -> r.method(HttpMethod.GET).or().method(HttpMethod.POST).and().path("/order-service/actuator/**")
+                        .filters(f -> f.filters(customGatewayFilterFactory.apply(CustomGatewayFilterFactory.Config.builder()
+                                        .foo("A")
+                                        .build()))
+                                .filters(loggingFilter.apply(LoggingFilter.Config.builder()
+                                        .baseMessage("Hi there.")
+                                        .preLogger(true)
+                                        .postLogger(true)
+                                        .build()))
+                                .removeRequestHeader("Cookie")
+                                .rewritePath("/order-service/(?<segment>.*)","/$\\{segment}"))
+                        .uri("lb://ORDER-SERVICE"))
                 .build();
     }
 
