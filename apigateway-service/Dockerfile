@@ -1,5 +1,4 @@
 FROM openjdk:17-ea-11-jdk-slim
 VOLUME /tmp
-COPY apiEncryptionKey.jks apiEncryptionKey.jks
-COPY target/config-service-0.0.1-SNAPSHOT.jar ConfigServer.jar
-ENTRYPOINT ["java","-jar","ConfigServer.jar"]
+COPY build/libs/apigateway-service-0.0.1-SNAPSHOT.jar ApigatewayService.jar
+ENTRYPOINT ["java","-jar","ApigatewayService.jar"]
